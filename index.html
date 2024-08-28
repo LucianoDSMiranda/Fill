@@ -8,64 +8,85 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #ffffff; /* Fundo branco */
+            color: #333;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
         }
         .login-container {
-            background-color: white;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #007bff; /* Detalhes em azul */
+            width: 300px; /* Ajuste a largura do box de login conforme necessário */
+            text-align: center;
+            box-sizing: border-box; /* Inclui a borda e padding no cálculo da largura e altura */
         }
         .login-container h2 {
             margin-bottom: 20px;
+            color: #007bff; /* Azul para o título */
         }
         .login-container input[type="text"],
         .login-container input[type="password"] {
-            width: 100%;
+            width: calc(100% - 20px); /* Ajusta a largura para compensar o padding */
             padding: 10px;
             margin: 5px 0 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box; /* Inclui o padding no cálculo da largura */
         }
         .login-container button {
-            width: 100%;
+            width: calc(100% - 20px); /* Ajusta a largura para compensar o padding */
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #007bff; /* Azul para o botão */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            box-sizing: border-box; /* Inclui o padding no cálculo da largura */
         }
         .login-container button:hover {
-            background-color: #45a049;
+            background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
         }
     </style>
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Usuário">
-    <input type="password" id="password" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
-</div>
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+    </div>
 
-<script>
-    function login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="login()">Entrar</button>
+    </div>
 
-        if (username === 'teste' && password === '1234') { // Senha definida como '1234'
-            window.location.href = 'planilha.html';
-        } else {
-            alert('Usuário ou senha incorretos!');
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'teste' && password === '1234') { // Senha definida como '1234'
+                window.location.href = 'planilha.html';
+            } else {
+                alert('Usuário ou senha incorretos!');
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
 </html>
