@@ -35,36 +35,44 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px; /* Espaço entre os botões */
+            margin-bottom: 20px; /* Espaço abaixo dos botões */
         }
         .button-container button {
             background-color: #007bff; /* Azul principal */
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 15px 20px;
-            font-size: 16px;
+            padding: 10px 15px; /* Ajuste o padding para dispositivos móveis */
+            font-size: 14px; /* Ajuste o tamanho da fonte para dispositivos móveis */
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            min-width: 120px; /* Largura mínima dos botões */
+            min-width: 100px; /* Largura mínima dos botões */
         }
         .button-container button:hover {
             background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
             transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
         }
-        @media (max-width: 768px) {
-            .button-container button {
-                width: 100%;
-                max-width: 300px; /* Ajuste a largura máxima dos botões em telas menores */
-            }
-        }
         iframe {
             width: 90%;
-            height: 90vh; /* Ajuste a altura do iframe */
+            height: 70vh; /* Ajuste a altura do iframe */
             border: 2px solid #007bff;
             border-radius: 10px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
             margin-top: 20px; /* Espaço acima do iframe */
             display: none; /* Esconde o iframe inicialmente */
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em; /* Ajuste o tamanho da fonte para telas menores */
+            }
+            .logo img {
+                max-width: 150px; /* Ajuste o tamanho do logo para telas menores */
+            }
+            .button-container button {
+                width: 100%;
+                max-width: 300px; /* Ajuste a largura máxima dos botões em telas menores */
+                padding: 12px; /* Ajuste o padding para maior área de clique */
+            }
         }
     </style>
 </head>
@@ -75,7 +83,7 @@
     <h1>Escolha o Dia</h1>
     <div class="button-container">
         <button onclick="handleButtonClick('1072837027')">Segunda</button>
-        <button onclick="handleButtonClick('ID_DA_ABA_TERCA')">Terça</button>
+        <button onclick="handleButtonClick('1298944900')">Terça</button>
         <button onclick="handleButtonClick('ID_DA_ABA_QUARTA')">Quarta</button>
         <button onclick="handleButtonClick('ID_DA_ABA_QUINTA')">Quinta</button>
         <button onclick="handleButtonClick('ID_DA_ABA_SEXTA')">Sexta</button>
