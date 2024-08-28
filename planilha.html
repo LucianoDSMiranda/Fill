@@ -73,6 +73,9 @@
                 max-width: 300px; /* Ajuste a largura máxima dos botões em telas menores */
                 padding: 12px; /* Ajuste o padding para maior área de clique */
             }
+            iframe {
+                height: 50vh; /* Ajuste a altura do iframe em telas menores */
+            }
         }
     </style>
 </head>
@@ -82,21 +85,33 @@
     </div>
     <h1>Escolha o Dia</h1>
     <div class="button-container">
-        <button onclick="handleButtonClick('1072837027')">Segunda</button>
-        <button onclick="handleButtonClick('1298944900')">Terça</button>
-        <button onclick="handleButtonClick('ID_DA_ABA_QUARTA')">Quarta</button>
-        <button onclick="handleButtonClick('ID_DA_ABA_QUINTA')">Quinta</button>
-        <button onclick="handleButtonClick('ID_DA_ABA_SEXTA')">Sexta</button>
-        <button onclick="handleButtonClick('ID_DA_ABA_SABADO_DOMINGO')">Sábado/Domingo</button>
+        <button onclick="handleButtonClick('segunda')">Segunda</button>
+        <button onclick="handleButtonClick('terca')">Terça</button>
+        <button onclick="handleButtonClick('quarta')">Quarta</button>
+        <button onclick="handleButtonClick('quinta')">Quinta</button>
+        <button onclick="handleButtonClick('sexta')">Sexta</button>
+        <button onclick="handleButtonClick('sabado_domingo')">Sábado/Domingo</button>
     </div>
     <iframe id="spreadsheetFrame" src=""></iframe>
 
     <script>
-        const spreadsheetId = '1wuI5y87IUJCs6izyl5xuHGrVOYvbP1sE'; // ID da sua planilha
+        // URL base para o OneDrive
+        const baseUrl = 'https://1drv.ms/x/c/00f764eba4668030/IQPZE4WaSrDLRacNiqsbQKVoAUshfSbeHUcifBipzaLmwTI?em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True';
 
-        function handleButtonClick(sheetId) {
+        // Mapear os dias para os parâmetros específicos do iFrame
+        const activeCellMap = {
+            segunda: 'ActiveCell=%27Segunda%27!A1',
+            terca: 'ActiveCell=%27Ter%C3%A7a%27!A1', // A URL precisa estar URL-encoded
+            quarta: 'ActiveCell=%27Quarta%27!A1',
+            quinta: 'ActiveCell=%27Quinta%27!A1',
+            sexta: 'ActiveCell=%27Sexta%27!A1',
+            sabado_domingo: 'ActiveCell=%27Sabado_Domingo%27!A1' // Substitua conforme necessário
+        };
+
+        // Função para atualizar o iframe com a aba selecionada
+        function handleButtonClick(day) {
             const iframe = document.getElementById('spreadsheetFrame');
-            iframe.src = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit#gid=${sheetId}`;
+            iframe.src = `${baseUrl}&${activeCellMap[day]}`;
             iframe.style.display = 'block'; // Exibe o iframe
         }
     </script>
