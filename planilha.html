@@ -90,14 +90,14 @@
         <button onclick="handleButtonClick('Quarta')">Quarta</button>
         <button onclick="handleButtonClick('Quinta')">Quinta</button>
         <button onclick="handleButtonClick('Sexta')">Sexta</button>
-        <button onclick="handleButtonClick('Sabado')">Sábado/Domingo</button>
+        <button onclick="handleButtonClick('Final de semana')">Sábado/Domingo</button>
     </div>
     <iframe id="spreadsheetFrame" src=""></iframe>
 
     <script>
-        function handleButtonClick(sheetId) {
+        function handleButtonClick(sheet) {
             const iframe = document.getElementById('spreadsheetFrame');
-            iframe.src = `https://1drv.ms/x/c/00f764eba4668030/IQPZE4WaSrDLRacNiqsbQKVoAUshfSbeHUcifBipzaLmwTI?em=2&wdAllowInteractivity=False&ActiveCell='${sheetId}'!I10&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True`;
+            iframe.src = `https://1drv.ms/x/c/00f764eba4668030/IQPZE4WaSrDLRacNiqsbQKVoAUshfSbeHUcifBipzaLmwTI?em=2&wdAllowInteractivity=False&ActiveCell='${sheet}'!I10&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True`;
             iframe.style.display = 'block';
         }
     </script>
