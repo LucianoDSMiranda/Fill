@@ -15,6 +15,7 @@
             margin: 0;
             background-color: #ffffff;
             color: #333;
+            position: relative;
         }
         .logo {
             margin-bottom: 20px;
@@ -79,6 +80,58 @@
                 text-align: left;
             }
         }
+
+        .controls {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .controls label {
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .controls input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .controls button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .controls button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-btn:disabled {
+            background-color: #f99;
+            cursor: not-allowed;
+        }
+
+        .add-row-container {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -88,9 +141,10 @@
     </div>
 
     <div class="table-container">
-        <table>
+        <table id="exerciseTable">
             <thead>
                 <tr>
+                    <th>Ação</th> <!-- Coluna para o botão de exclusão -->
                     <th>Exercícios</th>
                     <th>Séries</th>
                     <th>Repetições</th>
@@ -102,6 +156,7 @@
             </thead>
             <tbody>
                 <tr>
+                    <td data-label="Ação"><button class="delete-btn" onclick="deleteRow(this)">X</button></td>
                     <td data-label="Exercícios">Supino Reto</td>
                     <td data-label="Séries">3</td>
                     <td data-label="Repetições">12</td>
@@ -111,6 +166,7 @@
                     <td data-label="Link"><a href="#">Vídeo</a></td>
                 </tr>
                 <tr>
+                    <td data-label="Ação"><button class="delete-btn" onclick="deleteRow(this)">X</button></td>
                     <td data-label="Exercícios">Agachamento Livre</td>
                     <td data-label="Séries">4</td>
                     <td data-label="Repetições">10</td>
@@ -120,6 +176,7 @@
                     <td data-label="Link"><a href="#">Vídeo</a></td>
                 </tr>
                 <tr>
+                    <td data-label="Ação"><button class="delete-btn" onclick="deleteRow(this)">X</button></td>
                     <td data-label="Exercícios">Remada Curvada</td>
                     <td data-label="Séries">3</td>
                     <td data-label="Repetições">15</td>
@@ -131,6 +188,62 @@
             </tbody>
         </table>
     </div>
+
+    <div class="add-row-container">
+        <button id="addRowBtn" onclick="addRow()" disabled>Adicionar Linha</button>
+    </div>
+
+    <div class="controls">
+        <label>
+            <input type="checkbox" id="toggleEdit" onclick="toggleEditMode()"> Liberar Edição
+        </label>
+    </div>
+
+    <script>
+        function toggleEditMode() {
+            const isEditable = document.getElementById('toggleEdit').checked;
+            const cells = document.querySelectorAll('td:not([data-label="Ação"])');
+            const addRowBtn = document.getElementById('addRowBtn');
+            const deleteBtns = document.querySelectorAll('.delete-btn');
+
+            cells.forEach(cell => {
+                if (isEditable) {
+                    cell.setAttribute('contenteditable', 'true');
+                } else {
+                    cell.removeAttribute('contenteditable');
+                }
+            });
+
+            // Ativar ou desativar o botão de adicionar linha e os botões de exclusão
+            addRowBtn.disabled = !isEditable;
+            deleteBtns.forEach(btn => btn.disabled = !isEditable);
+        }
+
+        function addRow() {
+            const table = document.getElementById('exerciseTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            const columns = ['Ação', 'Exercícios', 'Séries', 'Repetições', 'Descanso (min)', 'Carga', 'Observação', 'Link'];
+
+            columns.forEach(col => {
+                const newCell = newRow.insertCell();
+                newCell.setAttribute('data-label', col);
+                if (col === 'Ação') {
+                    newCell.innerHTML = '<button class="delete-btn" onclick="deleteRow(this)">X</button>';
+                } else if (col === 'Link') {
+                    newCell.innerHTML = '<a href="#">Vídeo</a>';
+                } else {
+                    newCell.setAttribute('contenteditable', 'true');
+                    newCell.innerText = '';
+                }
+            });
+        }
+
+        function deleteRow(btn) {
+            const row = btn.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
 
 </body>
 </html>
