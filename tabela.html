@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Exercícios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+        .table-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 20px auto;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+            }
+            td {
+                padding-left: 50%;
+                text-align: right;
+                position: relative;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 50%;
+                padding-left: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercícios</th>
+                    <th>Séries</th>
+                    <th>Repetições</th>
+                    <th>Descanso (min)</th>
+                    <th>Carga</th>
+                    <th>Observação</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Exercícios">Supino Reto</td>
+                    <td data-label="Séries">3</td>
+                    <td data-label="Repetições">12</td>
+                    <td data-label="Descanso (min)">2</td>
+                    <td data-label="Carga">70kg</td>
+                    <td data-label="Observação">Aumentar carga progressivamente</td>
+                    <td data-label="Link"><a href="#">Vídeo</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Exercícios">Agachamento Livre</td>
+                    <td data-label="Séries">4</td>
+                    <td data-label="Repetições">10</td>
+                    <td data-label="Descanso (min)">3</td>
+                    <td data-label="Carga">90kg</td>
+                    <td data-label="Observação">Manter postura correta</td>
+                    <td data-label="Link"><a href="#">Vídeo</a></td>
+                </tr>
+                <tr>
+                    <td data-label="Exercícios">Remada Curvada</td>
+                    <td data-label="Séries">3</td>
+                    <td data-label="Repetições">15</td>
+                    <td data-label="Descanso (min)">1.5</td>
+                    <td data-label="Carga">50kg</td>
+                    <td data-label="Observação">Cuidado com a lombar</td>
+                    <td data-label="Link"><a href="#">Vídeo</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
